@@ -1,4 +1,4 @@
-const pp = require("puppeteer")
+const pp = require('puppeteer');
 
 (async () => {
   const browser = await pp.launch({
@@ -11,11 +11,11 @@ const pp = require("puppeteer")
           , '--single-process'
           ]
   , headless: false
-  }) // debug用途にheadlessをfalseにしてgui表示させてる.
-  const tab = browser.newPage()
-  tab.goto('https://beterugift.jp/#top')
+  }); // debug用途にheadlessをfalseにしてgui表示させてる.
+  const page = await browser.newPage();
+  await page.goto('https://beterugift.jp/#top');
 ////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////
-  await browser.close()
-})()
+  await browser.close();
+})();
