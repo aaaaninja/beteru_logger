@@ -10,12 +10,25 @@ const pp = require('puppeteer');
           , '--no-zygote'
           , '--single-process'
           ]
-  , headless: false
-  }); // debug用途にheadlessをfalseにしてgui表示させてる.
+//, headless: false
+  });
   const page = await browser.newPage();
   await page.goto('https://beterugift.jp/#top');
 ////////////////////////////////////////////////////////////////////////////////
+  await page.waitForSelector('#gift_table');
 
+  const allDiscountRate = await page.evaluate(() => {
+    const targetTableRows = document.querySelector('#gift_table').querySelectorAll('tr');
+
+    return [...targetTableRows].map(row => {
+      const discountRate = row.querySelector('.fsw');
+
+      if (discountRate) return discountRate.textContent.trim();
+      return '-1';
+    }).map(el => Number(el.replace(/%/,'')));
+  });
+
+  console.log(Math.min(...allDiscountRate.filter((r) => 0 < r).sort())); // 有効パーセンテージのみ抽出するし, 最小値を標準出力に出す.
 ////////////////////////////////////////////////////////////////////////////////
   await browser.close();
 })();
