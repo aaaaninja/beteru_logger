@@ -11,6 +11,12 @@ cd beteru_logger && yarn # install puppeteer
 
 how to use
 ----------------------------------------
+### cli
 ```
 node index.js
+```
+
+### cron
+```
+0,10,20,30,40,50 * * * * . $HOME/.bashrc && cd $beteru_path && echo $(node index.js) $(date -Iminutes) >> $HOME/beteru
 ```
