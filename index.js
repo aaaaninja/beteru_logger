@@ -22,8 +22,8 @@ const pp = require('puppeteer');
 
     return [...targetTableRows].map(row => {
       const discountRate = row.querySelector('.fsw');
-      return discountRate ? discountRate.textContent.trim() : '-1';
-    }).map(el => Number(el.replace(/%/,'')));
+      return discountRate ? discountRate.textContent.trim().replace(/%/,'') : '-1';
+    }).map(el => Number(el));
   });
 
   console.log(Math.min(...allDiscountRate.filter((r) => 0 < r).sort())); // 有効パーセンテージのみ抽出するし, 最小値を標準出力に出す.
