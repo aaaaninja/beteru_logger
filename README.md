@@ -18,7 +18,7 @@ node index.js
 
 ### cron
 ```
-0,10,20,30,40,50 * * * * . $HOME/.bashrc && cd $beteru_path && echo $(node index.js) $(date -Iminutes) >> $HOME/beteru
+0,10,20,30,40,50 * * * * . /home/aaaaninja/.bashrc && cd $beteru_path && echo -e "$(node index.js)\t$(date -Iminutes)" >> $HOME/beteru
 ```
 
 #### output format
