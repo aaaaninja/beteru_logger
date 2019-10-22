@@ -22,9 +22,7 @@ const pp = require('puppeteer');
 
     return [...targetTableRows].map(row => {
       const discountRate = row.querySelector('.fsw');
-
-      if (discountRate) return discountRate.textContent.trim();
-      return '-1';
+      return discountRate ? discountRate.textContent.trim() : '-1';
     }).map(el => Number(el.replace(/%/,'')));
   });
 
