@@ -27,7 +27,7 @@ const pp = require('puppeteer');
     }).map(el => Number(el));
   });
 
-  console.log(Math.min(...allDiscountRate.filter((r) => 0 < r))); // 有効パーセンテージのみ抽出するし, 最小値を標準出力に出す.
+  console.log(Math.min(...allDiscountRate.filter(r => 0 < r))); // 有効パーセンテージのみ抽出するし, 最小値を標準出力に出す.
 ////////////////////////////////////////////////////////////////////////////////
   await browser.close();
 })();
